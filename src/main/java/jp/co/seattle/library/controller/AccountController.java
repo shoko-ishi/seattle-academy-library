@@ -64,11 +64,11 @@ public class AccountController {
 
 			} else {
 				model.addAttribute("errorMessage", "確認用パスワードと一致しません。");
+				return "createAccount";
 			}
-			return "createAccount";
+
 		} else {
 			model.addAttribute("errorMessage", "半角英数字８文字で以上で入力してください。");
-			//System.out.println("半角英数字８文字で以上で入力してください。");
 			return "createAccount";
 		}
 
