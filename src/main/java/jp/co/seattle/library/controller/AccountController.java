@@ -39,6 +39,9 @@ public class AccountController {
 	 * @param model
 	 * @return ホーム画面に遷移
 	 */
+
+	//
+
 	@Transactional
 	@RequestMapping(value = "/createAccount", method = RequestMethod.POST)
 	public String createAccount(Locale locale, @RequestParam("email") String email,
@@ -49,13 +52,27 @@ public class AccountController {
 
 		// バリデーションチェック、パスワード一致チェック（タスク１）
 
-		
-		// パラメータで受け取ったアカウント情報をDtoに格納する。
-		UserInfo userInfo = new UserInfo();
-		userInfo.setEmail(email);
-		userInfo.setPassword(password);
-		usersService.registUser(userInfo);
-		return "redirect:/login";
+		if (password.length() >= 8 && password.matches("^[A-Za-z0-9]+$")) {
+			if (password.equals(passwordForCheck)) {
+				
+			// パラメータで受け取ったアカウント情報をDtoに格納する。
+				UserInfo userInfo = new UserInfo();
+				userInfo.setEmail(email);
+				userInfo.setPassword(password);
+				usersService.registUser(userInfo);
+				return "redirect:/login";
+
+			} else {
+				model.addAttribute("errorMessage", "確認用パスワードと一致しません。");
+				return "createAccount";
+			}
+
+		} else {
+			model.addAttribute("errorMessage", "半角英数字８文字で以上で入力してください。");
+			return "createAccount";
+		}
+
+
 	}
 
 }
