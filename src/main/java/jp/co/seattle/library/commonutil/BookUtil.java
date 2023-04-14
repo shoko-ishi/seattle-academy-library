@@ -31,16 +31,17 @@ public class BookUtil {
 		List<String> errorList = new ArrayList<>();
 		// 必須チェック
 		//もし著者、タイトル、出版社、出版日が書いていれば
-
+			if(!(isEmptyBookInfo(bookInfo))){
 		errorList.add(REQUIRED_ERROR);
-			
+			}
 		// ISBNのバリデーションチェック
+			if(!(isValidIsbn(bookInfo.getIsbn()))){
 		errorList.add(ISBN_ERROR);
-
+			}
 		// 出版日の形式チェック
-
+			if(!(checkDate(bookInfo.getPublishDate()))) {
 		errorList.add(PUBLISHDATE_ERROR);
-	
+			}
 		
 		return errorList;
 	}
@@ -80,8 +81,10 @@ public class BookUtil {
 		//TODO　ISBNが半角数字で10文字か13文字であればtrue（タスク４）
 		//文字数が正しければいい
 		if (isbn.length() == 10 || isbn.length() == 13 && isbn.matches("^[0-9]+$")) {
+
 		}
 		return true;
+
 	}
 
 	/**
