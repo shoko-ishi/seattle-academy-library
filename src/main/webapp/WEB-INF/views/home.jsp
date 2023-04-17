@@ -32,7 +32,7 @@
                 <div class="error_msg">${resultMessage}</div>
             </c:if>
             <div>
-                <div class="bookList">
+                <div class="booklist">
                     <c:forEach var="bookInfo" items="BookList">
                         <div class="books">
                             <form method="get" class="book_thumnail" action="editBook">
