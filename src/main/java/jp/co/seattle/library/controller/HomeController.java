@@ -33,7 +33,7 @@ public class HomeController {
 	public String transitionHome(Model model) {
 		//書籍の一覧情報を取得（タスク３）
 		List<BookInfo>getedBookList = booksService.getBookList();
-		model.addAttribute("booklist",getedBookList);
+		model.addAttribute("bookList",getedBookList);
 
 		return "home";
 	}
